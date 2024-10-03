@@ -2,26 +2,91 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 175 6% 95%;
+    --foreground: 0 0% 3%;
+    --card: 175 6% 90%;
+    --card-foreground: 175 5% 12%;
+    --popover: 175 6% 95%;
+    --popover-foreground: 175 95% 10%;
+    --primary: 175 64.4% 35.3%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 175 10% 70%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 137 10% 85%;
+    --muted-foreground: 175 5% 35%;
+    --accent: 137 10% 80%;
+    --accent-foreground: 175 5% 12%;
+    --destructive: 0 75% 40%;
+    --destructive-foreground: 175 5% 90%;
+    --border: 175 20% 50%;
+    --input: 175 20% 18%;
+    --ring: 175 20% 18%;
+    --radius: 0.6rem;
+  }
+  .dark {
+    --background: 175 10% 10%;
+    --foreground: 175 5% 90%;
+    --card: 175 6% 10%;
+    --card-foreground: 175 5% 90%;
+    --popover: 175 10% 5%;
+    --popover-foreground: 175 5% 90%;
+    --primary: 175 64.4% 35.3%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 175 10% 12%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 137 10% 15%;
+    --muted-foreground: 175 5% 60%;
+    --accent: 137 10% 15%;
+    --accent-foreground: 175 5% 90%;
+    --destructive: 0 50% 30%;
+    --destructive-foreground: 175 5% 90%;
+    --border: 175 20% 18%;
+    --input: 175 20% 18%;
+    --ring: 175 64.4% 35.3%;
+    --radius: 0.75rem;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  input:-webkit-autofill,
+  textarea:-webkit-autofill,
+  select:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px hsl(var(--foreground)) inset !important;
+    box-shadow: 0 0 0 1000px hsl(var(--foreground)) inset !important;
+    -webkit-text-fill-color: hsl(var(--border)) !important;
+  }
 }
 
+@layer components {
+  .smallest-font {
+    @apply text-[0.6rem];
+  }
+  .link {
+    @apply focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0 tracking-tight underline underline-offset-1;
+  }
+}
+
+/* Popover to take the same width as the trigger */
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .popover-content-width-full {
+    width: var(--radix-popover-trigger-width);
+    max-height: var(--radix-popover-content-available-height);
+  }
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
   }
 }
